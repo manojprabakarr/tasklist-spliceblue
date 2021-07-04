@@ -26,6 +26,7 @@ function Taskform({users,msg,name,date,time,change,Sendata,tasks,value,refresh})
       accordionContainer.classList.contains("MuiCollapse-entered")
     ) {
            value(refresh);
+           localStorage.removeItem('editTask');
       
       
 
@@ -44,8 +45,7 @@ function Taskform({users,msg,name,date,time,change,Sendata,tasks,value,refresh})
   const Deletetask = async () => {
     console.log("updated", tasks);
     if (localStorage.getItem("editTask")) {
-      await fetch(` https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38/${localStorage.getItem(
-        "editTask")}`,
+      await fetch(` https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38/${localStorage.getItem("editTask")}`,
         {
           method: "DELETE",
           headers: {
@@ -60,6 +60,7 @@ function Taskform({users,msg,name,date,time,change,Sendata,tasks,value,refresh})
               dispatch(pushTask(Pickone));
               value(refresh);
               alert("task removed successfully");
+              localStorage.removeItem('editTask')
               })
               .catch((err) => {
                 console.log(err.message);

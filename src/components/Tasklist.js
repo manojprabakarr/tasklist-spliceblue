@@ -10,7 +10,7 @@ import { selectTask } from '../features/Taskslice';
 function TaskList({ msg, date, id }) {
    const task = useSelector(selectTask);
 
-
+   
 
    const Edittask = () => {
     //open accordion for editing
@@ -33,24 +33,24 @@ function TaskList({ msg, date, id }) {
       );
       accordionContainer.style.height = "auto";
     }
-
-    let data = task.findIndex((task) => task.id === id);
-    if (task[data]) {
+    
+  let index = task.findIndex((task) => task.id === id);
+    if (task[index]) {
       let task_msg = document.getElementById("task_msg");
       let task_date = document.getElementById("task_date");
       let task_time = document.getElementById("task_time");
-      let asigned_user = document.getElementById("asigned_user");
+      let assigned_user = document.getElementById("asigned_user");
 
-      task_msg.value = task[data].task_msg;
-      task_date.value = task[data].task_date;
+      task_msg.value = task[index].task_msg;
+      task_date.value = task[index].task_date;
 
-      const convertedTime = new Date(task[data].task_time * 60 * 60 * 24)
+      const convertedTime = new Date(task[index].task_time * 60 * 60 * 24)
         .toTimeString()
         .slice(0, 5);
       task_time.value = convertedTime;
 
-      asigned_user.value = task[data].assigned_user;
-      localStorage.setItem("editTask", task[data].id);
+      assigned_user.value = task[index].assigned_user;
+      localStorage.setItem("editTask", task[index].id);
     }
   };
 

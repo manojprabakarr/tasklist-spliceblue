@@ -47,6 +47,7 @@ function Task() {
 
 
      const{ asigned_user,task_msg,task_date,task_time,time_zone,is_completed}=values;
+     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
 
      
      async function Senddata (e) {
@@ -69,11 +70,12 @@ function Task() {
           if(!(asigned_user || task_date || task_time || task_msg)) {
             alert("all field requireds");
             return;
+           
           }
           
-           if (localStorage.getItem("editTask")) {
-              await fetch(
-                `https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38/${localStorage.getItem("edit")}`,
+          if (localStorage.getItem("editTask")) {
+             return await fetch(
+                `https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38/${localStorage.getItem("editTask")}`,
                 {
                    method: "PUT",
                     headers: {
@@ -97,33 +99,39 @@ function Task() {
                 console.log(err.message);
               });
       } 
-      else {
+     
 
+           
           //sendatask
-          await fetch('https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38',{
+         return  await fetch('https://stage.api.sloovi.com/task/lead_6996a7dcdddc4af3b4f71ccb985cea38',{
             method: "POST",
-            headers: new Headers({
+            headers: {
               "Content-Type": "application/json",
                  Authorization:
                   "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2MjUzMTAxMTUsIm5iZiI6MTYyNTMxMDExNSwianRpIjoiNDU1OTdjYTAtMTEzZi00MGQxLWE2NTAtZWI0NjM3NjhkYTRiIiwiaWRlbnRpdHkiOnsibmFtZSI6IlN1YmkgU2lyIiwiZW1haWwiOiJzbWl0aGNoZXJ5bEB5YWhvby5jb20iLCJ1c2VyX2lkIjoidXNlcl82YmVlYzQ1OTkxNWY0NTA3YThkMjUyMGU2MGUwM2MzZSIsImNvbXBhbnlfaWQiOiJjb21wYW55XzNjNjhjZDk0ZWJkNjQ4Yzc4ZDc2ODcyY2ZhOWY4Y2ZiIiwiaWNvbiI6Imh0dHA6Ly93d3cuZ3JhdmF0YXIuY29tL2F2YXRhci9mMmU5YWNkZWM4MTdlMjRkMjk4MGQ4NTNlODkzODVmNT9kZWZhdWx0PWh0dHBzJTNBJTJGJTJGczMuc2xvb3ZpLmNvbSUyRmF2YXRhci1kZWZhdWx0LWljb24ucG5nIiwiYnlfZGVmYXVsdCI6Im91dHJlYWNoIn0sImZyZXNoIjpmYWxzZSwidHlwZSI6ImFjY2VzcyJ9.vSfSD4LL9gZDwEgtnUg2UYm4oGwLkPC0Y06ustHN9bI",
-                   }),
+            },
             body: JSON.stringify(value),
           })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-            dispatch(pushTask([data.results, ...tasks]));
+         
+         .then((res) => res.json())
+        .then((data) => {
+          console.log("userdata",data);
+          dispatch(pushTask([data.results, ...tasks]));
              if (data.status === "success") {
                setValues(initialstate);
                alert("Task added succesfully.");
                
                }
-               })
-               .catch((err) => {
-                  console.log(err.message);
-                  });
+            
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+         
+    
+
     }
-    }
+     
           
      
 
@@ -131,8 +139,7 @@ function Task() {
 
    
 
-     const handleChange = (e) => setValues({ ...values, [e.target.name]: e.target.value });
-
+     
     
 
 
