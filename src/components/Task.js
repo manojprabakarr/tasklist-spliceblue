@@ -97,6 +97,7 @@ function Task() {
           if (data.status === "success") {
             alert("Task updated succesfully.");
             localStorage.removeItem("editTask");
+            setValues(initialstate);
           }
         })
         .catch((err) => {
