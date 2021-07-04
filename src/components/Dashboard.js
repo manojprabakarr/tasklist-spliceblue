@@ -5,13 +5,11 @@ import Task from './Task';
 function Dashboard() {
   return (
     <div className="dashboard">
-     <div className="header"></div>
+      <div className="header"></div>
 
-     <div className="tasksection">
-      <Task/>
-     
-     </div>
-      
+      <div className="tasksection">
+        <Task />
+      </div>
     </div>
   );
 }

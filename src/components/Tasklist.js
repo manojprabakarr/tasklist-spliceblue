@@ -8,11 +8,9 @@ import CreateIcon from '@material-ui/icons/Create';
 import { selectTask } from '../features/Taskslice';
 
 function TaskList({ msg, date, id }) {
-   const task = useSelector(selectTask);
+  const task = useSelector(selectTask);
 
-   
-
-   const Edittask = () => {
+  const Edittask = () => {
     //open accordion for editing
     const accordionRoot = document.querySelector(".MuiAccordion-root");
     const accordionSummary = document.querySelector(
@@ -33,8 +31,8 @@ function TaskList({ msg, date, id }) {
       );
       accordionContainer.style.height = "auto";
     }
-    
-  let index = task.findIndex((task) => task.id === id);
+
+    let index = task.findIndex((task) => task.id === id);
     if (task[index]) {
       let task_msg = document.getElementById("task_msg");
       let task_date = document.getElementById("task_date");
@@ -54,15 +52,12 @@ function TaskList({ msg, date, id }) {
     }
   };
 
-
-
-
   return (
     <div className="tasklist">
       <div className="tasklistcontainer">
         <Avatar />
         <div className="tasklistinfo">
-          <h5>{ msg}</h5>
+          <h5>{msg}</h5>
           <p>{date}</p>
         </div>
       </div>
