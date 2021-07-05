@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { useSelector } from 'react-redux';
 
-import Avatar from '@material-ui/core/Avatar';
+import { Avatar } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Create';
 
 import { selectTask } from '../features/Taskslice';
@@ -38,16 +36,25 @@ function TaskList({ msg, date, id }) {
       let task_date = document.getElementById("task_date");
       let task_time = document.getElementById("task_time");
       let assigned_user = document.getElementById("asigned_user");
-
       task_msg.value = task[index].task_msg;
       task_date.value = task[index].task_date;
 
-      const convertedTime = new Date(task[index].task_time * 60 * 60 * 24)
-        .toTimeString()
-        .slice(0, 5);
+      const date = new Date(task[index].task_time * 1000);
+      const hours = date.getUTCHours();
+      const min = date.getUTCMinutes();
+
+      const convertedTime =
+        hours.toString().padStart(2, "0") +
+        ":" +
+        min.toString().padStart(2, "0");
+
       task_time.value = convertedTime;
 
+      console.log(task);
+
+      console.log(task[index].assigned_user);
       assigned_user.value = task[index].assigned_user;
+
       localStorage.setItem("editTask", task[index].id);
     }
   };

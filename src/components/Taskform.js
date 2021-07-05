@@ -143,8 +143,8 @@ function Taskform({
             onChange={change}
           >
             {users &&
-              users?.map((user) => (
-                <MenuItem key={user.user_id} value={user.name}>
+              users?.map((user, index) => (
+                <MenuItem key={index} value={user.name} selected>
                   {user.name}
                 </MenuItem>
               ))}

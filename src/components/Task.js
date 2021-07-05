@@ -144,6 +144,7 @@ function Task() {
       }).then((res) => res.json());
       try {
         const users = request.results.data;
+        console.log(request);
 
         const acceptedusers = users.filter((user) => {
           return user.user_status === "accepted";
@@ -172,6 +173,7 @@ function Task() {
       )
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           dispatch(pushTask(data.results));
         })
         .catch((err) => {
