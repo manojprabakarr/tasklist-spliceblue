@@ -5,7 +5,7 @@ import CreateIcon from '@material-ui/icons/Create';
 
 import { selectTask } from '../features/Taskslice';
 
-function TaskList({ msg, date, id }) {
+function TaskList({ msg, date, id, value, refresh }) {
   const task = useSelector(selectTask);
 
   const Edittask = () => {
@@ -52,7 +52,6 @@ function TaskList({ msg, date, id }) {
 
       console.log(task);
 
-      console.log(task[index].assigned_user);
       assigned_user.value = task[index].assigned_user;
 
       localStorage.setItem("editTask", task[index].id);

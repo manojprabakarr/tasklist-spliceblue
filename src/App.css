@@ -87,7 +87,8 @@
 .selectuser {
   width: 100%;
   background-color: white;
-  max-height: 40px;
+
+  height: 40px;
 }
 
 .tasks_delete {

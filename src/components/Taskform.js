@@ -3,8 +3,6 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import DeleteIcon from '@material-ui/icons/Delete';
 
@@ -134,7 +132,7 @@ function Taskform({
 
         <div className="taskform_user">
           <p>Assign user</p>
-          <Select
+          <select
             variant="outlined"
             className="selectuser"
             id="asigned_user"
@@ -142,13 +140,14 @@ function Taskform({
             value={name}
             onChange={change}
           >
+            <option>{""}</option>
             {users &&
               users?.map((user, index) => (
-                <MenuItem key={index} value={user.name} selected>
+                <option key={index} value={value.name}>
                   {user.name}
-                </MenuItem>
+                </option>
               ))}
-          </Select>
+          </select>
         </div>
         <div className="tasks_delete">
           <DeleteIcon
@@ -163,7 +162,6 @@ function Taskform({
           <div className="taskform_cancel">
             <p onClick={() => closeAccordion()}>Cancel</p>
             <Button variant="contained" type="submit">
-              {" "}
               Save
             </Button>
           </div>

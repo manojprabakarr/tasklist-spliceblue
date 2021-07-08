@@ -48,6 +48,7 @@ function Task() {
     time_zone,
     is_completed,
   } = values;
+
   const handleChange = (e) =>
     setValues({ ...values, [e.target.name]: e.target.value });
 
@@ -215,6 +216,8 @@ function Task() {
                 id={task.id}
                 msg={task.task_msg}
                 date={task.task_date}
+                value={setValues}
+                refresh={initialstate}
               />
             ))
           : null}
